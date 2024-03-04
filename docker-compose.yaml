@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+    fpm:
+        container_name: fpm
+        build: ./docker/fpm
+        environment:
+            XDEBUG_MODE: "coverage"
+            XDEBUG_CONFIG: "start_with_request=yes client_port=9003 client_host=host.docker.internal idekey=PHPSTORM file_link_format=phpstorm://open?%f:%l"
+            PHP_IDE_CONFIG: "serverName=Docker"
+        volumes:
+            - .:/var/www/html
